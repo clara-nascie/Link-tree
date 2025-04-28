@@ -6,7 +6,7 @@
 
 :root {
   --text-color: white;
-  --bg-url: url(./Assets/bg-mobile.jpg);
+  --bg-url: url(./Assets/bg.jpg);
   --stroke-color: rgba(255, 255, 255, 0.336);
   --surface-color: rgba(255, 255, 255, 0.05);
   --surface-color-hover: rgba(0, 0, 0, 0.02);
@@ -16,7 +16,7 @@
 
 .light {
   --text-color: black;
-  --bg-url: url(./Assets/bg-mobile-light.jpg);
+  --bg-url: url(./Assets/bg-light.jpg);
   --stroke-color: rgba(0, 0, 0, 0.5);
   --surface-color: rgba(230, 206, 228, 0.822);
   --surface-color-hover: rgba(0, 0, 0, 0.02);
@@ -26,7 +26,7 @@
 
 body {
   /*
-  background-image: url(./Assets/bg-mobile.jpg);
+  background-image: url(./Assets/bg.jpg);
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
@@ -40,10 +40,12 @@ body {
 body * {
   font-family: "Inter", sans-serif;
   color: var(--text-color);
+  height: 100%vh;
 }
 
 #container {
-  width: 360px;
+  width: 100%;
+  max-width: 588px;
   margin: 56px auto 0px;
   padding: 0 24px;
 }
@@ -87,12 +89,16 @@ body * {
   left: 0;
   z-index: 1;
   transform: translateY(-50%);
+
+  animation: slide-back 0.4s;
 }
 
 .light #switch button{
-  right: 0;
-  left: initial;
-  
+  animation: slide-in 0.4s forwards;
+}
+
+#switch button:hover {
+  outline: 8px solid var(--surface-color);
 }
 
 #switch span{
@@ -161,3 +167,33 @@ footer {
   text-align: center;
   font-size: 14px;
 }
+
+/* media queries */
+@media (max-width: 700px) {
+:root {
+  --bg-url: url(./Assets/bg.jpg);
+}
+.light {
+  --bg-url: url(./Assets/bg-light.jpg);
+}
+ }
+
+ /*animations*/
+ @keyframes slide-in {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+ }
+
+ @keyframes slide-back {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0%;
+  }
+ }
+
